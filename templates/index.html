@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="POST" action="/add">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="task" placeholder="Enter a new task" required>
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Add Task</button>
+            </div>
+        </div>
+    </form>
+
+    <ul class="list-group">
+        {% for task in tasks %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ task.task }}
+                <a href="{{ url_for('delete', task_id=task.id) }}" class="btn btn-danger btn-sm">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
